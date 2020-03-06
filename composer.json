@@ -18,9 +18,13 @@
 		"phpunit/phpunit": "^9.0"
 	},
 	"autoload": {
-		"VirajKhatavkar\\CakePHPQueue\\": "src"
+		"psr-4": {
+			"VirajKhatavkar\\CakePHPQueue\\": "src"
+		}
 	},
 	"autoload-dev": {
-		"VirajKhatavkar\\CakePHPQueue\\Tests": "tests"
+		"psr-4": {
+			"VirajKhatavkar\\CakePHPQueue\\Tests\\": "tests"
+		}
 	}
 }
