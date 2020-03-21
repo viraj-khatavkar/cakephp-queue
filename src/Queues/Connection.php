@@ -1,6 +1,6 @@
 <?php
 
-namespace VirajKhatavkar\CakePHPQueue\Connections;
+namespace VirajKhatavkar\CakePHPQueue\Queues;
 
 use Cake\Core\Configure;
 
@@ -24,12 +24,12 @@ class Connection
         }
     }
 
-    public function make(): ConnectionContract
+    public function make(): QueueContract
     {
         return $this->mapConnector()->connect(Configure::read("cakephp_queue.$this->connection"));
     }
 
-    protected function mapConnector(): ConnectionContract
+    protected function mapConnector(): QueueContract
     {
         if ($this->invalidConnector()) {
             throw new \Exception("Invalid connector");

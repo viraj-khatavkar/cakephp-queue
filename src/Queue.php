@@ -2,18 +2,18 @@
 
 namespace VirajKhatavkar\CakePHPQueue;
 
-use VirajKhatavkar\CakePHPQueue\Connections\Connection;
+use VirajKhatavkar\CakePHPQueue\Queues\Connection;
 
 class Queue
 {
     public function push($job, $data, $connection)
     {
-        $this->buildConnection($connection);
+        return $this->buildConnection($connection)->push($job, $data);
     }
 
     /**
      * @param $connection
-     * @return \VirajKhatavkar\CakePHPQueue\Connections\ConnectionContract
+     * @return \VirajKhatavkar\CakePHPQueue\Queues\QueueContract
      */
     protected function buildConnection($connection)
     {

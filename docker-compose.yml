@@ -1,0 +1,15 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./docker/app
+      dockerfile: Dockerfile
+    image: viraj/cakephp-queue
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - queuenet
+networks:
+  queuenet:
+    driver: "bridge"
