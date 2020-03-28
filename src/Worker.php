@@ -10,20 +10,27 @@ class Worker
 {
     public function work($queueConnection, $databaseConnection = 'default')
     {
-//        $lastRestart = $this->getTimestampOfLastQueueRestart();
+        //TODO:register signals
+
+        $lastRestart = $this->getTimestampOfLastQueueRestart();
 
         while (true) {
+
+            //TODO:set timeout handler
+
             $job = $this->buildConnection($queueConnection)->getNextJob();
 
             if ($job) {
 
-//                $this->reconnectDatabase($databaseConnection);
+                $this->reconnectDatabase($databaseConnection);
                 $job->fire();
                 $job->delete();
 
             }
 
-//            exit(12);
+            if ($this->queueShouldRestart($lastRestart)) {
+                $this->stopWorker();
+            }
         }
     }
 
@@ -61,5 +68,10 @@ class Worker
         $connection = ConnectionManager::get($connection);
         $connection->disconnect();
         $connection->connect();
+    }
+
+    public function stopWorker()
+    {
+        exit(12);
     }
 }

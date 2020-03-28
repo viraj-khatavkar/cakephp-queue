@@ -5,7 +5,7 @@ namespace VirajKhatavkar\CakePHPQueue\Jobs;
 
 use Pheanstalk\Job as PheanstalkJob;
 
-class BeanstalkdJob extends Job
+class BeanstalkdJob extends Job implements JobContract
 {
 
     /** @var \Pheanstalk\Pheanstalk */
@@ -19,7 +19,7 @@ class BeanstalkdJob extends Job
     /**
      * BeanstalkdJob constructor.
      * @param $connection
-     * @param Job $job
+     * @param PheanstalkJob $job
      */
     public function __construct($connection, PheanstalkJob $job)
     {

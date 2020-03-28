@@ -2,7 +2,7 @@
 
 namespace VirajKhatavkar\CakePHPQueue\Queues;
 
-use VirajKhatavkar\CakePHPQueue\Jobs\Job;
+use VirajKhatavkar\CakePHPQueue\Jobs\JobContract;
 
 interface QueueContract
 {
@@ -12,7 +12,7 @@ interface QueueContract
 
     public function push($job, $data);
 
-    public function getNextJob();
+    public function getNextJob() : JobContract;
 
     public function runJob();
 }

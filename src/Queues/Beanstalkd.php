@@ -8,6 +8,7 @@ use Pheanstalk\Contract\PheanstalkInterface;
 use Pheanstalk\Pheanstalk;
 use VirajKhatavkar\CakePHPQueue\Job;
 use VirajKhatavkar\CakePHPQueue\Jobs\BeanstalkdJob;
+use VirajKhatavkar\CakePHPQueue\Jobs\JobContract;
 
 class Beanstalkd implements QueueContract
 {
@@ -59,7 +60,7 @@ class Beanstalkd implements QueueContract
         ]);
     }
 
-    public function getNextJob()
+    public function getNextJob() : JobContract
     {
         $this->pheanstalk->watch($this->queue);
 
